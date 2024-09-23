@@ -11,7 +11,9 @@ JOIN ( SELECT QP.query_name, COUNT(CASE WHEN QP.rating < 3 THEN 1 END) * 100.0 /
         FROM Queries QP
         GROUP BY QP.query_name) AS QP1
 ON Q.query_name = QP1.query_name
+WHERE Q.query_name IS NOT NULL
 GROUP BY Q.query_name, QP1.poor_query_percentage;
+
 
 
 
